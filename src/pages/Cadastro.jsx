@@ -7,16 +7,6 @@ import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 import { useSelector } from 'react-redux';
 
-// Botão Voltar para Mobile 
-
-const Bvoltar = () => {
-  return (
-    <a className="bvoltar" href="/">
-      <i className="fas fa-arrow-left"></i>🡸 Voltar
-    </a>
-  );
-};
-
 // Mensagem para link para relatórios
 
 const MensagSucess = () => {
@@ -141,7 +131,6 @@ const Cadastro = () => {
   return (
     <div>
       <Header />
-      <Bvoltar />
       <div className="container-aluguel">
         <div className="input-container-aluguel">
           <form onSubmit={handleSubmit(onSubmit)}>

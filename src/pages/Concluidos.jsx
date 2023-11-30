@@ -7,16 +7,6 @@ import '../styles/concluidos.css';
 import { useNavigate } from "react-router-dom";
 import { useSelector } from 'react-redux';
 
-// Boltão para voltar a página principal
-
-const Bvoltar = () => {
-  return (
-    <a className="bvoltar" href="/">
-      <i className="fas fa-arrow-left"></i>🡸 Voltar
-    </a>
-  )
-};
-
 
 // Container de pesquisa
 const PesquisaBarra = ({ pesquisaNome, pesquisaData, atualizaLista, config }) => {
@@ -84,7 +74,6 @@ const PesquisaBarra = ({ pesquisaNome, pesquisaData, atualizaLista, config }) =>
       <select id="tipo-pesquisa" style={{ marginRight: '10px' }} onChange={(e) => setTipoPesquisa(e.target.value)} value={tipoPesquisa}>
         <option value="nome">Nome do Cliente</option>
         <option value="data">Data de Devolução</option>
-        <option value="data-entrega">Data de Entrega</option>
       </select>
 
       {tipoPesquisa === "nome" && (
@@ -116,23 +105,6 @@ const PesquisaBarra = ({ pesquisaNome, pesquisaData, atualizaLista, config }) =>
         </div>
       )}
 
-      {tipoPesquisa === "data-entrega" && (
-        <div>
-          <input
-            type="date"
-            id="data-inicial"
-            style={{ marginRight: '5px' }}
-            value={dataInicial}
-            onChange={(e) => setDataEntregaInicial(e.target.value)}
-          />
-          <input
-            type="date"
-            id="data-final"
-            value={dataFinal}
-            onChange={(e) => setDataEntregaFinal(e.target.value)}
-          />
-        </div>
-      )}
 
       <button id="pesquisar-button" style={{ marginLeft: '5px', marginRight: '5px' }} onClick={handlePesquisa}>Pesquisar</button>
       <button id="resetar-pesquisa-button" onClick={resetarPesquisa}>Resetar Tabela</button>
@@ -157,24 +129,24 @@ const TableAluguel = ({ data, setData, atualizaLista, config }) => {
 
     // Get clientes
     axios.get('https://projeto.viniciuscavalc6.repl.co/api/clientes', config)
-    .then((response) => {
-      if (response.status === 200) {
-        const dadosClientes = response.data.data;
-        let dadosProcessadosClientes = dadosClientes.map((cliente) => {
-          return {
-            value: cliente.id,
-            label: cliente.attributes.nome,
-          };
-        });
-        console.log(dadosProcessadosClientes);
-        setOpcoesClientes(dadosProcessadosClientes);
-      } else {
-        console.error('Erro na resposta da API');
-      }
-    })
-    .catch((error) => {
-      console.error('Erro ao fazer a chamada da API:', error);
-    });
+      .then((response) => {
+        if (response.status === 200) {
+          const dadosClientes = response.data.data;
+          let dadosProcessadosClientes = dadosClientes.map((cliente) => {
+            return {
+              value: cliente.id,
+              label: cliente.attributes.nome,
+            };
+          });
+          console.log(dadosProcessadosClientes);
+          setOpcoesClientes(dadosProcessadosClientes);
+        } else {
+          console.error('Erro na resposta da API');
+        }
+      })
+      .catch((error) => {
+        console.error('Erro ao fazer a chamada da API:', error);
+      });
   }, []);
 
   const obterAlugueis = (aluguelId) => {
@@ -247,7 +219,7 @@ const TableAluguel = ({ data, setData, atualizaLista, config }) => {
       })
       .catch((error) => {
         console.log("Campos Editados: ", camposEditados);
-        console.error('Erro ao editar a venda:', error);
+        console.error('Erro ao editar :', error);
       });
   };
 
@@ -320,7 +292,19 @@ const TableAluguel = ({ data, setData, atualizaLista, config }) => {
     }
   ];
 
-  const showEditModal = (record) => {
+  const showEditModal = (record) => {    
+    const [dayD, monthD, yearD] = record.data_devolucao.split('/');
+    let data_devolucao = (new Date([monthD, dayD, yearD].join('/'))).toISOString().split('T')[0];
+    const [dayA, monthA, yearA] = record.data_aluguel.split('/');
+    let data_aluguel = (new Date([monthA, dayA, yearA].join('/'))).toISOString().split('T')[0];
+    let data_efetiva_entrega = record.data_efetiva_entrega;
+    if (record.data_efetiva_entrega != null) {
+      const [dayE, monthE, yearE] = record.data_efetiva_entrega.split('/');
+      data_efetiva_entrega = (new Date([monthE, dayE, yearE].join('/'))).toISOString().split('T')[0];
+    }    
+    console.log(data_devolucao)
+    console.log(data_aluguel)
+    console.log(data_efetiva_entrega)
     setLoading(true);
     obterAlugueis(record.key).then((aluguelId) => {
       const modalContent = (
@@ -351,7 +335,7 @@ const TableAluguel = ({ data, setData, atualizaLista, config }) => {
               style={{
                 marginLeft: '50px',
               }}
-              defaultValue={record.data_aluguel}
+              defaultValue={data_aluguel}
               onChange={(e) => (record.data_aluguel = e.target.value)}
             />
           </div>
@@ -363,7 +347,7 @@ const TableAluguel = ({ data, setData, atualizaLista, config }) => {
               style={{
                 marginLeft: '34px',
               }}
-              defaultValue={record.data_devolucao}
+              defaultValue={data_devolucao}
               onChange={(e) => (record.data_devolucao = e.target.value)}
             />
           </div>
@@ -414,7 +398,7 @@ const TableAluguel = ({ data, setData, atualizaLista, config }) => {
               style={{
                 marginLeft: '76px',
               }}
-              defaultValue={record.data_efetiva_entrega}
+              defaultValue={data_efetiva_entrega}
               onChange={(e) => (record.data_efetiva_entrega = e.target.value)}
             />
           </div>
@@ -426,7 +410,7 @@ const TableAluguel = ({ data, setData, atualizaLista, config }) => {
               onClick={() => setConcluido(!concluido)}
               id="editConcluido"
               style={{
-                marginLeft: '100px',
+                marginLeft: '87px',
               }}
               defaultValue={false}
               onChange={(e) => (record.concluido = concluido ? true : false)}
@@ -505,7 +489,7 @@ const Concluidos = () => {
   const [editingRecord, setEditingRecord] = useState(null);
   const [deleteRecord, setDeleteRecord] = useState(null);
   const [detailsRecord, setDetailsRecord] = useState(null);
-  
+
   // token de login
 
   const token = useSelector((state) => state.token)
@@ -530,7 +514,9 @@ const Concluidos = () => {
       return navigate("/login");
     }
   }, [token]);
-  
+
+  // atualizar lista
+
   function atualizaLista() {
     axios.get(`https://projeto.viniciuscavalc6.repl.co/api/alugueis?filters[concluido]=true&populate=*`, config)
 
@@ -542,8 +528,8 @@ const Concluidos = () => {
             return {
               key: Aluguel.id,
               cliente: Aluguel.attributes.cliente.data.attributes.nome,
-              data_devolucao: Aluguel.attributes.data_devolucao,
-              data_aluguel: Aluguel.attributes.data_aluguel,
+              data_devolucao: (new Date(Aluguel.attributes.data_devolucao)).toLocaleDateString('pt-BR'),
+              data_aluguel: (new Date(Aluguel.attributes.data_aluguel)).toLocaleDateString('pt-BR'),
               valor_adiantado: Aluguel.attributes.valor_adiantado,
               valor_faltando: Aluguel.attributes.valor_faltando,
               concluido: Aluguel.attributes.concluido ? "Sim" : "Não",
@@ -591,8 +577,8 @@ const Concluidos = () => {
             return {
               key: Aluguel.id,
               cliente: Aluguel.attributes.cliente.data.attributes.nome,
-              data_devolucao: Aluguel.attributes.data_devolucao,
-              data_aluguel: Aluguel.attributes.data_aluguel,
+              data_devolucao: (new Date(Aluguel.attributes.data_devolucao)).toLocaleDateString('pt-BR'),
+              data_aluguel: (new Date(Aluguel.attributes.data_aluguel)).toLocaleDateString('pt-BR'),
               valor_adiantado: Aluguel.attributes.valor_adiantado,
               valor_faltando: Aluguel.attributes.valor_faltando,
               concluido: Aluguel.attributes.concluido ? "Sim" : "Não",
@@ -613,21 +599,23 @@ const Concluidos = () => {
   }
 
   const pesquisaData = (dataInicio, dataFim) => {
-    axios.get(`https://projeto.viniciuscavalc6.repl.co/api/alugueis?sort=data_devolucao:desc&filters[concluido]=false&filters[data_devolucao][$gte]=${dataInicio}&filters[data_devolucao][$lte]=${dataFim}&populate=*`, config)
+    axios.get(`https://projeto.viniciuscavalc6.repl.co/api/alugueis?sort=data_devolucao:desc&filters[concluido]=true&filters[data_devolucao][$gte]=${dataInicio}&filters[data_devolucao][$lte]=${dataFim}&populate=*`, config)
       .then((response) => {
         if (response.status === 200) {
           const dados = response.data.data;
           let dadosProcessados = dados.map((Aluguel) => {
             return {
               key: Aluguel.id,
-                cliente: Aluguel.attributes.cliente.data.attributes.nome,
-                data_devolucao: Aluguel.attributes.data_devolucao,
-                data_aluguel: Aluguel.attributes.data_aluguel,
-                valor_adiantado: Aluguel.attributes.valor_adiantado,
-                valor_faltando: Aluguel.attributes.valor_faltando,
-                concluido: Aluguel.attributes.concluido ? "Sim" : "Não",
-                data_efetiva_entrega: Aluguel.attributes.data_efetiva_entrega,
-            }});
+              cliente: Aluguel.attributes.cliente.data.attributes.nome,
+              data_devolucao: (new Date(Aluguel.attributes.data_devolucao)).toLocaleDateString('pt-BR'),
+              data_aluguel: (new Date(Aluguel.attributes.data_aluguel)).toLocaleDateString('pt-BR'),
+              valor_adiantado: Aluguel.attributes.valor_adiantado,
+              valor_faltando: Aluguel.attributes.valor_faltando,
+              concluido: Aluguel.attributes.concluido ? "Sim" : "Não",
+              data_efetiva_entrega: Aluguel.attributes.data_efetiva_entrega,
+              quantidade_pecas: Aluguel.attributes.quantidade_pecas,
+            }
+          });
           console.log("Pesquisa por Data: ", dadosProcessados);
           setData(dadosProcessados);
         } else {
@@ -644,9 +632,6 @@ const Concluidos = () => {
     <div>
       {/* Header para computador */}
       <Header />
-
-      {/* Botão para voltar a página inicial */}
-      <Bvoltar />
 
       {/* Barra de pesquisa */}
       <PesquisaBarra atualizaLista={atualizaLista} pesquisaNome={pesquisaNome} pesquisaData={pesquisaData} config={config} />

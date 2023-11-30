@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import '../styles/login.css';
+import '../App.css';
+
 import { useDispatch } from 'react-redux';
 import { definirToken } from '../redux/loginSlice';
 import axios from 'axios';

@@ -7,16 +7,6 @@ import { Table, Button, Modal, Form, Input } from 'antd';
 import { useNavigate } from "react-router-dom";
 import { useSelector } from 'react-redux';
 
-// Botão de Voltar para Mobile
-
-const Bvoltar = () => {
-  return (
-    <a className="bvoltar" href="/">
-      <i className="fas fa-arrow-left"></i>🡸 Voltar
-    </a>
-  )
-};
-
 // Formulário de input
 
 const InputForm = ({ onAdicionar }) => {
@@ -408,9 +398,9 @@ const Clientes = () => {
 
   // Função para confirmar a exclusão do cliente 
   const confirmarExclusaoCliente = (clienteId, clienteExcluidoNome) => {
-    const confirmarExclusao = window.confirm(`Tem certeza de que deseja excluir o cliente: ${clienteExcluidoNome}? \n ID: ${clienteId}`);
+    const confirmarExclusao = window.confirm(`Tem certeza de que deseja excluir o cliente: ${clienteExcluidoNome}?`);
     if (confirmarExclusao) {
-      axios.delete(`https://projeto.viniciuscavalc6.repl.co/api/clientes${clienteId}`, config)
+      axios.delete(`https://projeto.viniciuscavalc6.repl.co/api/clientes/${clienteId}`, config)
         .then((response) => {
           if (response.status === 200) {
             atualizaLista();
@@ -423,7 +413,6 @@ const Clientes = () => {
         });
     }
   };
-
 
   // Lógica de Pesquisar Clientes
   const pesquisarCliente = () => {
@@ -438,7 +427,6 @@ const Clientes = () => {
   return (
     <div>
       <Header />
-      <Bvoltar />
       <div className="container">
         <InputForm
           nome={nome}

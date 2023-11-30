@@ -7,16 +7,6 @@ import '../styles/agendados.css';
 import { useNavigate } from "react-router-dom";
 import { useSelector } from 'react-redux';
 
-// Boltão para voltar a página principal
-
-const Bvoltar = () => {
-  return (
-    <a className="bvoltar" href="/">
-      <i className="fas fa-arrow-left"></i>🡸 Voltar
-    </a>
-  )
-};
-
 
 // Container de pesquisa
 const PesquisaBarra = ({ pesquisaNome, pesquisaData, atualizaLista, config }) => {
@@ -84,7 +74,6 @@ const PesquisaBarra = ({ pesquisaNome, pesquisaData, atualizaLista, config }) =>
       <select id="tipo-pesquisa" style={{ marginRight: '10px' }} onChange={(e) => setTipoPesquisa(e.target.value)} value={tipoPesquisa}>
         <option value="nome">Nome do Cliente</option>
         <option value="data">Data de Devolução</option>
-        <option value="data-entrega">Data de Entrega</option>
       </select>
 
       {tipoPesquisa === "nome" && (
@@ -116,23 +105,6 @@ const PesquisaBarra = ({ pesquisaNome, pesquisaData, atualizaLista, config }) =>
         </div>
       )}
 
-      {tipoPesquisa === "data-entrega" && (
-        <div>
-          <input
-            type="date"
-            id="data-inicial"
-            style={{ marginRight: '5px' }}
-            value={dataInicial}
-            onChange={(e) => setDataEntregaInicial(e.target.value)}
-          />
-          <input
-            type="date"
-            id="data-final"
-            value={dataFinal}
-            onChange={(e) => setDataEntregaFinal(e.target.value)}
-          />
-        </div>
-      )}
 
       <button id="pesquisar-button" style={{ marginLeft: '5px', marginRight: '5px' }} onClick={handlePesquisa}>Pesquisar</button>
       <button id="resetar-pesquisa-button" onClick={resetarPesquisa}>Resetar Tabela</button>
@@ -517,7 +489,7 @@ const Agendados = () => {
   const [editingRecord, setEditingRecord] = useState(null);
   const [deleteRecord, setDeleteRecord] = useState(null);
   const [detailsRecord, setDetailsRecord] = useState(null);
-  
+
   // token de login
 
   const token = useSelector((state) => state.token)
@@ -544,7 +516,7 @@ const Agendados = () => {
   }, [token]);
 
   // atualizar lista
-  
+
   function atualizaLista() {
     axios.get(`https://projeto.viniciuscavalc6.repl.co/api/alugueis?filters[concluido]=false&populate=*`, config)
 
@@ -660,9 +632,6 @@ const Agendados = () => {
     <div>
       {/* Header para computador */}
       <Header />
-
-      {/* Botão para voltar a página inicial */}
-      <Bvoltar />
 
       {/* Barra de pesquisa */}
       <PesquisaBarra atualizaLista={atualizaLista} pesquisaNome={pesquisaNome} pesquisaData={pesquisaData} config={config} />

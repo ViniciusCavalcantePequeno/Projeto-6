@@ -23,16 +23,16 @@ body {
   color: white;
   font-weight: bold;
   font-size: 25px;
-  z-index: 10;
+  z-index: 15;
 }
 
 .header-toggle {
   display: none;
   background-color: #cccccc;
   padding: 10px 20px;
-  border: 2px solid #skyblue;
+  border: 2px solid #595959;
   border-radius: 5px;
-  color: #d7cec7;
+  color: #0e440f;
   font-size: 20px;
   text-decoration: none;
 }
@@ -59,7 +59,7 @@ body {
   font-weight: bold;
 }
 
-.header-toggle {
+.menu-toggle {
   cursor: pointer;
 }
 
