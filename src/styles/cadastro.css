@@ -1,0 +1,145 @@
+body {
+  background: #92AD9;
+}
+
+/* Torna visivel o botão de voltar do header */
+
+.header-toggle {
+  display: block;
+}
+
+/* Boltão mobile de voltar a tela principal */
+
+.bvoltar {
+  position: fixed;
+  top: 1%;
+  left: 1%;
+  color: #fff;
+  font-size: 20px;
+  text-decoration: none;
+}
+
+/* Container */
+
+.container-aluguel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: center;
+  z-index: 0;
+  margin-top: 50%;
+  max-width: 85hv;
+}
+
+/* Display mobile */
+@media screen and (max-width: 800px) {
+  body {
+    align-items: flex-start;
+    width: 1000px;
+  }
+
+  .header {
+    display: none;
+  }
+  
+  .container-aluguel {
+    margin-top: 100%;
+    margin-left: 50%;
+    margin-right: 10%;
+    justify-content: center;
+    padding-right: 10px;
+    max-width: 40vw;
+  }
+
+  .input-container-aluguel input {
+    width: 80%;
+  }
+}
+
+
+.input-container-aluguel {
+  background-color: #5998;
+  padding: 20px;
+  margin-bottom: 25px;
+  font-weight: bold;
+  display: flex;  flex-direction: column;
+  align-items: center;
+  margin-top: -170px;
+}
+
+.input-container-aluguel input {
+  width: 300px;
+}
+
+.input-row-aluguel {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  margin-bottom: 15px;
+}
+
+.input-row-aluguel label {
+  width: 100px;
+  text-align: left;
+}
+
+.button-container-aluguel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: -5px;
+}
+
+.button-aluguel {
+  padding: 14px 30px;
+  font-size: 23px;
+  font-weight: bold;
+  background-color: #00aa0;
+  color: #ffffff;
+  border: none;
+  cursor: pointer;
+}
+
+.button-aluguel:active {
+  background-color: #0aaa;
+  color: #000000;
+}
+
+
+/* Tabelas produtos adicionados */
+
+.input-row-cadastro-table-container {
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+
+.barra-rolagem {
+  table-layout: fixed;
+  width: calc(100% - 5px);
+}
+
+.barra-rolagem tbody {
+  padding-right: 5px;
+}
+
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #73AA7;
+}
+
+th, td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #000000;
+}
+
+th {
+  background-color: #0ac6;
+}
+
+tbody tr:hover {
+  background-color: #92c4e;
+}

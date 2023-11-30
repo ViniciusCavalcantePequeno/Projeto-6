@@ -1,0 +1,190 @@
+body {
+  background: #d7cec7;
+  overflow: auto;
+}
+
+/* Torna visivel o botão de voltar do header */
+
+.header-toggle {
+  display: block;
+}
+
+/* Boltão de voltar a tela principal */
+
+.bvoltar {
+  position: fixed;
+  top: 1%;
+  left: 1%;
+  color: #d7cec7;
+  font-size: 20px;
+  text-decoration: none;
+}
+
+/* Contaianer de Clientes */
+
+.container {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  top: 5;
+  left: 0;
+  right: 0;
+  bottom: 10;
+  z-index: 0;
+  max-width: 85vw;
+  margin: auto;
+}
+
+
+/* Estilos para telas menores (dispositivos móveis) */
+@media screen and (max-width: 800px) {
+  body {
+    align-items: flex-start;
+  }
+
+  .header {
+    display: none;
+  }
+  
+  .container {
+    margin-top: 200%;
+    margin-left: 50%;
+    max-width: 50vw;
+  }
+
+  .cliente-lista {
+    max-height: 200px;
+    overflow-y: auto;
+    max-width: 200px;
+    justify-content: center;
+    padding: 0 20px;
+  }
+
+  table {
+    font-size: 10px;
+  }
+
+  .input-container input {
+    width: 100%;
+  }
+
+}
+
+
+/* /* Linhas de input */
+
+.input-container {
+  background-color: #skyblue;
+  padding: 20px;
+  margin-bottom: 20px;
+  font-weight: bold;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: -200px;
+  width: 300px;
+}
+
+.label {
+  width: 80px;
+}
+
+.input-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.input-row label {
+  width: 80px;
+}
+
+/* /* Confirmção */
+
+.buttonc {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: skyblue;
+  color: #ffffff;
+  border: none;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.buttonc:active {
+  background-color: skyblue;
+  color: #000000;
+}
+
+/* /* Barra de pesquisa por nome */
+
+.barra-pesquisa {
+  background-color: #skyblue;
+  padding: 10px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  border-radius: 5px;
+}
+
+.barra-pesquisa input {
+  margin-left: 10px;
+  padding: 5px;
+  border: none;
+  background-color: #ffffff;
+  border-radius: 3px;
+}
+
+/* /* Tabela de clientes */
+
+.cliente-lista {
+  max-height: 200px;
+  overflow-y: auto;
+  max-width: 800px;
+}
+
+
+.barra-rolagem {
+  table-layout: fixed;
+  width: calc(100% - 5px);
+}
+
+.barra-rolagem tbody {
+  padding-right: 5px;
+}
+
+
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #d7cec7;
+}
+
+th, td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #000000;
+}
+
+th {
+  background-color: #d7cec7;
+}
+
+tbody tr:hover {
+  background-color: #skyblue;
+}
+
+.ant-table-content {
+  color: rgb(0, 0, 0);
+  font-weight: bold;
+ }
+
+.titulo-container {
+  font-size: 23px;
+  font-weight: bold;
+  font-family: Arial, sans-serif;
+  margin-bottom: 15px;
+}

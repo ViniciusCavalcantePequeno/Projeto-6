@@ -1,0 +1,176 @@
+body {
+  background: #skyblue;
+}
+
+/* Torna visivel o botão de voltar do header */
+
+.header-toggle {
+  display: block;
+}
+
+/* Boltão de voltar a tela principal */
+
+.bvoltar {
+  position: fixed;
+  top: 1%;
+  left: 1%;
+  color: #aaaaa;
+  font-size: 20px;
+  text-decoration: none; /* Remover sublinhado do link */
+}
+
+
+/* Container de input */
+
+.container {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  top: 5;
+  left: 0;
+  right: 0;
+  bottom: 10;
+  z-index: 0;
+  max-width: 85vw;
+  margin: auto;
+}
+
+
+/* Estilos para telas menores (dispositivos móveis) */
+@media screen and (max-width: 800px) {
+  body {
+    align-items: flex-start;
+  }
+  
+  .container {
+    margin-top: 200%;
+    margin-left: 50%;
+    max-width: 50vw;
+  }
+
+  
+  .header {
+    display: none;
+  }
+
+  .table {
+    font-size: 10px;
+    justify-content: center;
+    margin-right: 40%;
+    width: 400px;
+  }
+
+  .input-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-right: 10px;
+  }
+
+  .input-row label {
+    width: 80px;
+    align-items: right;
+    margin-right: 10px;
+  }
+  
+}
+
+
+.input-container {
+  background-color: #aaaa;
+  padding: 20px;
+  margin-bottom: 20px;
+  font-weight: bold;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: -200px;
+  width: 500px;
+}
+
+.label {
+  width: 200px;
+}
+
+.input-row {
+  display: flex;
+  align-items: left;
+  gap: 10px;
+}
+
+.input-row label {
+  width: 200px;
+}
+
+/* Butão de Confirmação */
+
+.buttonc {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #bbaaccc;
+  color: #ffffff;
+  border: none;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+.buttonc:active {
+  background-color: #acfffff;
+  color: #000000;
+}
+
+
+/* Barras  de Pesquuisa */
+
+.barra-pesquisa {
+  background-color: #7777777;
+  padding: 10px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+}
+
+.barra-pesquisa input {
+  margin-left: 10px;
+  padding: 5px;
+  border: none;
+  background-color: #ffffff;
+  border-radius: 3px;
+}
+
+/* Tabela */
+
+.produto-lista {
+  max-height: 200px;
+  overflow-y: auto;
+  max-width: 900px;
+}
+
+
+
+table {
+  border-collapse: collapse;
+  background-color: #cabbffff;
+  max-height: 400px;
+  overflow-y: auto;
+  width: 100%;
+  max-width: 800px;
+}
+
+th, td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #000000;
+}
+
+th {
+  background-color: #777768;
+}
+
+tbody tr:hover {
+  background-color: #ffffff;
+}

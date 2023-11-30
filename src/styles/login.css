@@ -1,0 +1,65 @@
+/* Adicione isso ao seu arquivo Login.css ou ao arquivo CSS principal */
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+/* Estilo para o contêiner do formulário de login */
+
+.login-container {
+  background-color: #2c3e50; /* azul claro - 3399ff */
+  height: 400px;
+  width: 300px;
+  padding: 100px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo para o ícone de usuário (cara vazia) */
+.user-icon {
+  display: block;
+  margin: 0 auto 20px; 
+  width: 150px; 
+  height: 150px;
+  background-image: url('../imagens/iconelogin.png'); 
+  background-size: cover;
+  background-color: transparent;
+}
+
+/* Estilo para o formulário de login */
+.login-form {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Estilo para os rótulos e barras de input */
+.login-form label {
+  color: #ecf0f1;
+  margin-bottom: 8px;
+}
+
+.login-form input {
+  padding: 10px;
+  margin-bottom: 16px;
+  border: 2px solid #000000;
+  border-radius: 5px;
+}
+
+.login-form button {
+  padding: 10px 20px;
+  font-size: 20px;
+  background-color: #3498db;
+  color: #ffffff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.login-form button:active {
+  background-color: #2980b9;
+}
