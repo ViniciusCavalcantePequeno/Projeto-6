@@ -302,9 +302,6 @@ const TableAluguel = ({ data, setData, atualizaLista, config }) => {
       const [dayE, monthE, yearE] = record.data_efetiva_entrega.split('/');
       data_efetiva_entrega = (new Date([monthE, dayE, yearE].join('/'))).toISOString().split('T')[0];
     }    
-    console.log(data_devolucao)
-    console.log(data_aluguel)
-    console.log(data_efetiva_entrega)
     setLoading(true);
     obterAlugueis(record.key).then((aluguelId) => {
       const modalContent = (
@@ -528,8 +525,8 @@ const Agendados = () => {
             return {
               key: Aluguel.id,
               cliente: Aluguel.attributes.cliente.data.attributes.nome,
-              data_devolucao: (new Date(Aluguel.attributes.data_devolucao)).toLocaleDateString('pt-BR'),
-              data_aluguel: (new Date(Aluguel.attributes.data_aluguel)).toLocaleDateString('pt-BR'),
+              data_devolucao: Aluguel.attributes.data_devolucao,
+              data_aluguel: Aluguel.attributes.data_aluguel,
               valor_adiantado: Aluguel.attributes.valor_adiantado,
               valor_faltando: Aluguel.attributes.valor_faltando,
               concluido: Aluguel.attributes.concluido ? "Sim" : "Não",
@@ -577,8 +574,8 @@ const Agendados = () => {
             return {
               key: Aluguel.id,
               cliente: Aluguel.attributes.cliente.data.attributes.nome,
-              data_devolucao: (new Date(Aluguel.attributes.data_devolucao)).toLocaleDateString('pt-BR'),
-              data_aluguel: (new Date(Aluguel.attributes.data_aluguel)).toLocaleDateString('pt-BR'),
+              data_devolucao: Aluguel.attributes.data_devolucao,
+              data_aluguel: Aluguel.attributes.data_aluguel,
               valor_adiantado: Aluguel.attributes.valor_adiantado,
               valor_faltando: Aluguel.attributes.valor_faltando,
               concluido: Aluguel.attributes.concluido ? "Sim" : "Não",
@@ -607,8 +604,8 @@ const Agendados = () => {
             return {
               key: Aluguel.id,
               cliente: Aluguel.attributes.cliente.data.attributes.nome,
-              data_devolucao: (new Date(Aluguel.attributes.data_devolucao)).toLocaleDateString('pt-BR'),
-              data_aluguel: (new Date(Aluguel.attributes.data_aluguel)).toLocaleDateString('pt-BR'),
+              data_devolucao: Aluguel.attributes.data_devolucao,
+              data_aluguel: Aluguel.attributes.data_aluguel,
               valor_adiantado: Aluguel.attributes.valor_adiantado,
               valor_faltando: Aluguel.attributes.valor_faltando,
               concluido: Aluguel.attributes.concluido ? "Sim" : "Não",
