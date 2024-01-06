@@ -72,7 +72,7 @@ const Cadastro = () => {
         },
       };
 
-      axios.post('https://projeto.viniciuscavalc6.repl.co/api/alugueis', novoAluguel, config)
+      axios.post('https://ideacao-backend-8ea0b764c21a.herokuapp.com/api/aluguel_alugueis', novoAluguel, config)
         .then((response) => {
           if (response.status === 200) {
             alert("Aluguel Cadastrada com Sucesso!");
@@ -90,7 +90,7 @@ const Cadastro = () => {
 
   useEffect(() => {
     // Get para opção de Clientes
-    axios.get('https://projeto.viniciuscavalc6.repl.co/api/clientes', config)
+    axios.get('https://ideacao-backend-8ea0b764c21a.herokuapp.com/api/aluguel_clientes', config)
       .then((response) => {
         if (response.status === 200) {
           const dadosClientes = response.data.data;
@@ -114,7 +114,7 @@ const Cadastro = () => {
   const handleCancel = () => {
     if (aluguelId) {
       axios
-        .delete(`https://projeto.viniciuscavalc6.repl.co/api/alugueis/${aluguelId}`, config)
+        .delete(`https://ideacao-backend-8ea0b764c21a.herokuapp.com/api/aluguel_alugueis/${aluguelId}`, config)
         .then((response) => {
           if (response.status === 200) {
             console.log("Aluguel apagada com sucesso!");
