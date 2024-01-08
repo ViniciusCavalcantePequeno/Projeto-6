@@ -262,7 +262,7 @@ const Clientes = () => {
   // Atualiza a tabela caso um comando seja executado
 
   function atualizaLista() {
-    axios.get('https://ideacao-backend-8ea0b764c21a.herokuapp.com/api/aluguel_clientes', config)
+    axios.get('https://ideacao-backend-8ea0b764c21a.herokuapp.com/api/aluguel-clientes', config)
       .then((response) => {
         if (response.status == 200) {
           const dados = response.data.data;
@@ -312,7 +312,7 @@ const Clientes = () => {
         },
       };
 
-      axios.post('https://ideacao-backend-8ea0b764c21a.herokuapp.com/api/aluguel_clientes', novoCliente, config)
+      axios.post('https://ideacao-backend-8ea0b764c21a.herokuapp.com/api/aluguel-clientes', novoCliente, config)
         .then((response) => {
           if (response.status === 200) {
             alert("Cadastro de cliente feito com sucesso");
@@ -353,7 +353,7 @@ const Clientes = () => {
       camposEditados.anotacoes_cliente = clienteEditado.anotacoes_cliente;
     }
 
-    axios.put(`https://ideacao-backend-8ea0b764c21a.herokuapp.com/api/aluguel_clientes/${novosClientes[clienteEditando].key}`, { data: camposEditados }, config)
+    axios.put(`https://ideacao-backend-8ea0b764c21a.herokuapp.com/api/aluguel-clientes/${novosClientes[clienteEditando].key}`, { data: camposEditados }, config)
       .then((response) => {
         if (response.status === 200) {
           setClientes(novosClientes);
@@ -373,7 +373,7 @@ const Clientes = () => {
     console.log(clienteId);
 
     // Fazer uma chamada à API para verificar se existem clientes relacionados a vendas
-    axios.get(`https://ideacao-backend-8ea0b764c21a.herokuapp.com/api/aluguel_clientes/${clienteId}/?populate=*`, config)
+    axios.get(`https://ideacao-backend-8ea0b764c21a.herokuapp.com/api/aluguel-clientes/${clienteId}/?populate=*`, config)
       .then((response) => {
         if (response.status === 200) {
           const clienteExcluidoNome = response.data.data.attributes.nome;
@@ -400,7 +400,7 @@ const Clientes = () => {
   const confirmarExclusaoCliente = (clienteId, clienteExcluidoNome) => {
     const confirmarExclusao = window.confirm(`Tem certeza de que deseja excluir o cliente: ${clienteExcluidoNome}?`);
     if (confirmarExclusao) {
-      axios.delete(`https://ideacao-backend-8ea0b764c21a.herokuapp.com/api/aluguel_clientes/${clienteId}`, config)
+      axios.delete(`https://ideacao-backend-8ea0b764c21a.herokuapp.com/api/aluguel-clientes/${clienteId}`, config)
         .then((response) => {
           if (response.status === 200) {
             atualizaLista();

@@ -20,7 +20,7 @@ const PesquisaBarra = ({ pesquisaNome, pesquisaData, atualizaLista, config }) =>
 
   useEffect(() => {
     // Get para opção de Clientes
-    axios.get('https://ideacao-backend-8ea0b764c21a.herokuapp.com/api/aluguel_clientes', config)
+    axios.get('https://ideacao-backend-8ea0b764c21a.herokuapp.com/api/aluguel-clientes', config)
       .then((response) => {
         if (response.status === 200) {
           const dadosClientes = response.data.data;
@@ -128,7 +128,7 @@ const TableAluguel = ({ data, setData, atualizaLista, config }) => {
     atualizaLista();
 
     // Get clientes
-    axios.get('https://ideacao-backend-8ea0b764c21a.herokuapp.com/api/aluguel_clientes', config)
+    axios.get('https://ideacao-backend-8ea0b764c21a.herokuapp.com/api/aluguel-clientes', config)
       .then((response) => {
         if (response.status === 200) {
           const dadosClientes = response.data.data;
@@ -152,7 +152,7 @@ const TableAluguel = ({ data, setData, atualizaLista, config }) => {
   const obterAlugueis = (aluguelId) => {
     return new Promise((resolve, reject) => {
       axios
-        .get(`https://ideacao-backend-8ea0b764c21a.herokuapp.com/api/aluguel_alugueis?filters[id][$eq]=${aluguelId}&populate=*`, config)
+        .get(`https://ideacao-backend-8ea0b764c21a.herokuapp.com/api/aluguel-alugueis?filters[id][$eq]=${aluguelId}&populate=*`, config)
         .then((response) => {
           if (response.status === 200) {
             const dadosAlugueis = response.data.data;
@@ -208,7 +208,7 @@ const TableAluguel = ({ data, setData, atualizaLista, config }) => {
       camposEditados.concluido = aluguelEditada.concluido;
     }
 
-    axios.put(`https://ideacao-backend-8ea0b764c21a.herokuapp.com/api/aluguel_alugueis/${aluguelEditada.key}`, { data: camposEditados }, config)
+    axios.put(`https://ideacao-backend-8ea0b764c21a.herokuapp.com/api/aluguel-alugueis/${aluguelEditada.key}`, { data: camposEditados }, config)
       .then((response) => {
         if (response.status === 200) {
           console.log("ALUGUEL EDITADO. Status: ", response.status);
@@ -226,7 +226,7 @@ const TableAluguel = ({ data, setData, atualizaLista, config }) => {
   // Excluir ALugueis
 
   const excluirAluguel = (aluguelId) => {
-    axios.delete(`https://ideacao-backend-8ea0b764c21a.herokuapp.com/api/aluguel_alugueis/${aluguelId}`, config)
+    axios.delete(`https://ideacao-backend-8ea0b764c21a.herokuapp.com/api/aluguel-alugueis/${aluguelId}`, config)
       .then((response) => {
         atualizaLista();
       })
@@ -318,9 +318,9 @@ const TableAluguel = ({ data, setData, atualizaLista, config }) => {
               onChange={(value) => (record.cliente = value)}
             >
               {opcoesClientes.map((cliente) => (
-                <Option key={cliente.value} value={cliente.value}>
+                <Select.Option key={cliente.value} value={cliente.value}>
                   {cliente.label}
-                </Option>
+                </Select.Option>
               ))}
             </Select>
           </div>
@@ -515,7 +515,7 @@ const Concluidos = () => {
   // atualizar lista
 
   function atualizaLista() {
-    axios.get(`https://ideacao-backend-8ea0b764c21a.herokuapp.com/api/aluguel_alugueis?filters[concluido]=true&populate=*`, config)
+    axios.get(`https://ideacao-backend-8ea0b764c21a.herokuapp.com/api/aluguel-alugueis?filters[concluido]=true&populate=*`, config)
 
       .then((response) => {
         if (response.status === 200) {
@@ -566,7 +566,7 @@ const Concluidos = () => {
   };
 
   const pesquisaNome = (clienteId) => {
-    axios.get(`https://ideacao-backend-8ea0b764c21a.herokuapp.com/api/aluguel_alugueis?sort=data_devolucao:desc&filters[concluido]=true&filters[cliente][id][$eq]=${clienteId}&populate=*`, config)
+    axios.get(`https://ideacao-backend-8ea0b764c21a.herokuapp.com/api/aluguel-alugueis?sort=data_devolucao:desc&filters[concluido]=true&filters[cliente][id][$eq]=${clienteId}&populate=*`, config)
       .then((response) => {
         if (response.status === 200) {
           const dados = response.data.data;
