@@ -8,7 +8,7 @@ const MenuLateral = ({ menuAberto }) => {
   return (
     <div className={`menu-lateral ${menuAberto ? 'aberto' : ''}`}>
       <a className="button nova-venda" href="/Gerenciamento-de-Estoque/#/vendas">Vendas</a>
-      <a className="button relatorio" href="/Gerenciamento-de-Estoque#/relatorios">Relatórios</a>
+      <a className="button relatorio" href="/Gerenciamento-de-Estoque/#/relatorios">Relatórios</a>
       <a className="button estoque" href="/Gerenciamento-de-Estoque/#/estoque">Estoque</a>
       <a className="button clientes" href="/Gerenciamento-de-Estoque/#/clientes">Cliente</a>
 
