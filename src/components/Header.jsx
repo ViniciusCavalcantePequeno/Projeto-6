@@ -15,7 +15,7 @@ const Header = () => {
           &#9776;
         </div>
         <div className="header-title">Sistema de Gerenciamento</div>
-        <a className="header-button-sobre" href="/gerenciamento-de-estoque/#/sobre">
+        <a className="header-button-sobre" href="/Gerenciamento-de-Estoque/#/sobre">
           Sobre
         </a>
       </header>

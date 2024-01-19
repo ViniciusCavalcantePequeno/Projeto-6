@@ -10,7 +10,7 @@ const HeaderHome = () => {
     <header className={`header`}>
       <a className="header-button-sobre" onClick={ () => dispatch(definirToken("")) }>Sair</a>
       <div className="header-title">Sistema de Gerenciamento</div>
-      <a className="header-button-sobre" href="/gerenciamento-de-estoque/#/sobre">Sobre</a>
+      <a className="header-button-sobre" href="/Gerenciamento-de-Estoque/#/sobre">Sobre</a>
     </header>
   );
 };

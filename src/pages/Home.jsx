@@ -24,7 +24,7 @@ const Botoes = () => {
 };
 
 const LinkSobreMobile = () => {
-  return <a className="button-sobre-mobile" href="/gerenciamento-de-estoque/#/sobre">Sobre</a>;
+  return <a className="button-sobre-mobile" href="/Gerenciamento-de-Estoque/#/sobre">Sobre</a>;
 };
 
 const Home = () => {

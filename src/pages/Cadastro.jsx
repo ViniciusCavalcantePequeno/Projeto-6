@@ -26,7 +26,7 @@ const URL_ITENS_VENDA = baseUrlItems + '?populate=*&filters[venda][id][$eq]=';
 
 const Bvoltar = () => {
   return (
-    <a className="bvoltar" href="/gerenciamento-de-estoque/#/">
+    <a className="bvoltar" href="/Gerenciamento-de-Estoque/#/">
       <span>&#x2190;</span> Voltar
     </a>
   );
@@ -37,7 +37,7 @@ const Bvoltar = () => {
 const LinkRelatorios = () => {
   return (
     <div>
-      <a id="relatorios-link" href="/gerenciamento-de-estoque/#/relatorios">
+      <a id="relatorios-link" href="/Gerenciamento-de-Estoque/#/relatorios">
         Ir para Relatórios
       </a>
     </div>

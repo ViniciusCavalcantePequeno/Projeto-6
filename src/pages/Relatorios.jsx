@@ -14,7 +14,7 @@ import { useNavigate } from "react-router-dom";
 
 const Bvoltar = () => {
   return (
-    <a className="bvoltar" href="/gerenciamento-de-estoque/#/">
+    <a className="bvoltar" href="/Gerenciamento-de-Estoque/#/">
       <span>&#x2190;</span> Voltar
     </a>
   );
