@@ -9,10 +9,10 @@ const Header = () => {
     <header className={`header`}>
       <a className="header-button-sobre" onClick={ () => dispatch(definirToken("")) }>Sair</a>
       <div className="header-title">Vestidos & Ternos</div>
-      <a className="button cadastro" href="cadastro">Cadastrar Aluguel</a>
-      <a className="button concluidos" href="concluidos">Concluidos</a>
-      <a className="button agendados" href="agendados">Agendados</a>
-      <a className="button clientes" href="/">Cliente</a>
+      <a className="button cadastro" href="/Vestidos_e_Ternos/#/cadastro">Cadastrar Aluguel</a>
+      <a className="button concluidos" href="/Vestidos_e_Ternos/#/concluidos">Concluidos</a>
+      <a className="button agendados" href="/Vestidos_e_Ternos/#/agendados">Agendados</a>
+      <a className="button clientes" href="/Vestidos_e_Ternos/#/">Cliente</a>
     </header>
   );
 };

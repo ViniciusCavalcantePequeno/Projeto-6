@@ -642,7 +642,7 @@ const Agendados = () => {
       {/* Modal de Edição */}
       <Modal
         title="Editar Aluguel"
-        visible={editModalVisible}
+        open={editModalVisible}
         onCancel={() => setEditModalVisible(false)}
         onOk={handleEdit}
       >
@@ -651,7 +651,7 @@ const Agendados = () => {
 
       <Modal
         title="Confirmar Exclusão"
-        visible={deleteModalVisible}
+        open={deleteModalVisible}
         onOk={() => {
           setDeleteModalVisible(false);
         }}

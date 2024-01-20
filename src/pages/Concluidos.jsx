@@ -639,7 +639,7 @@ const Concluidos = () => {
       {/* Modal de Edição */}
       <Modal
         title="Editar Aluguel"
-        visible={editModalVisible}
+        open={editModalVisible}
         onCancel={() => setEditModalVisible(false)}
         onOk={handleEdit}
       >
@@ -648,7 +648,7 @@ const Concluidos = () => {
 
       <Modal
         title="Confirmar Exclusão"
-        visible={deleteModalVisible}
+        open={deleteModalVisible}
         onOk={() => {
           setDeleteModalVisible(false);
         }}
