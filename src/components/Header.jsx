@@ -1,26 +1,19 @@
-import React, { useState } from 'react';
-import MenuLateral from './MenuLateral';
+import React, { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { definirToken } from '../redux/loginSlice';
 
 const Header = () => {
-  const [menuAberto, setMenuAberto] = useState(false);
-
-  const toggleMenu = () => {
-    setMenuAberto(!menuAberto);
-  };
-
+  const dispatch = useDispatch();
+  
   return (
-    <div>
-      <header className="header">
-        <div className="menu-toggle" onClick={toggleMenu}>
-          &#9776;
-        </div>
-        <div className="header-title">Sistema de Gerenciamento</div>
-        <a className="header-button-sobre" href="/Gerenciamento-de-Estoque/#/sobre">
-          Sobre
-        </a>
-      </header>
-      <MenuLateral menuAberto={menuAberto} />
-    </div>
+    <header className={`header`}>
+      <a className="header-button-sobre" onClick={ () => dispatch(definirToken("")) }>Sair</a>
+      <div className="header-title">Vestidos & Ternos</div>
+      <a className="button cadastro" href="cadastro">Cadastrar Aluguel</a>
+      <a className="button concluidos" href="concluidos">Concluidos</a>
+      <a className="button agendados" href="agendados">Agendados</a>
+      <a className="button clientes" href="/">Cliente</a>
+    </header>
   );
 };
 

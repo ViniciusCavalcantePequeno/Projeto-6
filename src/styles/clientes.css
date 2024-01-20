@@ -1,5 +1,5 @@
 body {
-  background: #92AD94;
+  background: #d7cec7;
   overflow: auto;
 }
 
@@ -15,7 +15,7 @@ body {
   position: fixed;
   top: 1%;
   left: 1%;
-  color: #0e440f;
+  color: #d7cec7;
   font-size: 20px;
   text-decoration: none;
 }
@@ -76,7 +76,7 @@ body {
 /* /* Linhas de input */
 
 .input-container {
-  background-color: #989090;
+  background-color: #87CEEB;
   padding: 20px;
   margin-bottom: 20px;
   font-weight: bold;
@@ -106,7 +106,7 @@ body {
 .buttonc {
   padding: 10px 20px;
   font-size: 16px;
-  background-color: green;
+  background-color: skyblue;
   color: #ffffff;
   border: none;
   cursor: pointer;
@@ -114,14 +114,14 @@ body {
 }
 
 .buttonc:active {
-  background-color: lightgreen;
+  background-color: skyblue;
   color: #000000;
 }
 
 /* /* Barra de pesquisa por nome */
 
 .barra-pesquisa {
-  background-color: #599768;
+  background-color: #87CEEB;
   padding: 10px;
   margin-bottom: 10px;
   display: flex;
@@ -160,7 +160,7 @@ body {
 table {
   width: 100%;
   border-collapse: collapse;
-  background-color: #599768;
+  background-color: #d7cec7;
 }
 
 th, td {
@@ -170,11 +170,11 @@ th, td {
 }
 
 th {
-  background-color: #599768;
+  background-color: #d7cec7;
 }
 
 tbody tr:hover {
-  background-color: #92c49e;
+  background-color: #87CEEB;
 }
 
 .ant-table-content {

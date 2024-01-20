@@ -4,20 +4,8 @@ import Header from '../components/Header.jsx';
 import { useForm, Controller } from 'react-hook-form';
 import axios from 'axios';
 import { Table, Button, Modal, Form, Input } from 'antd';
-import { baseUrlClientes } from '../util/constantes';
-import { useSelector } from 'react-redux';
 import { useNavigate } from "react-router-dom";
-
-
-// Botão de Voltar para Mobile
-
-const Bvoltar = () => {
-  return (
-    <a className="bvoltar" href="/Gerenciamento-de-Estoque/#/">
-      <span>&#x2190;</span> Voltar
-    </a>
-  );
-};
+import { useSelector } from 'react-redux';
 
 // Formulário de input
 
@@ -43,12 +31,12 @@ const InputForm = ({ onAdicionar }) => {
           />
         </div>
         <div className="input-row">
-          <label htmlFor="email">Email:</label>
+          <label htmlFor="text">Email:</label>
           <Controller
             name="email"
             control={control}
             defaultValue=""
-            render={({ field }) => <input type="email" {...field} placeholder="Digite o email" />}
+            render={({ field }) => <input type="text" {...field} placeholder="Digite o email" />}
           />
         </div>
         <div className="input-row">
@@ -66,7 +54,16 @@ const InputForm = ({ onAdicionar }) => {
             name="endereco"
             control={control}
             defaultValue=""
-            render={({ field }) => <input type="text" {...field} placeholder="Digite o endereço" />}
+            render={({ field }) => <input type="text" {...field} placeholder="Digite o endereco" />}
+          />
+        </div>
+        <div className="input-row">
+          <label htmlFor="anotacoes_cliente">Anotações do cliente:</label>
+          <Controller
+            name="anotacoes_cliente"
+            control={control}
+            defaultValue=""
+            render={({ field }) => <input type="text" {...field} placeholder="Digite suas anotações" />}
           />
         </div>
         <button id="adicionar" className="buttonc" type="submit">
@@ -78,7 +75,7 @@ const InputForm = ({ onAdicionar }) => {
 };
 
 // Modal para Edição de Clientes
-const EditarClienteModal = ({ cliente, open, onCancel, onSave }) => {
+const EditarClienteModal = ({ cliente, visible, onCancel, onSave }) => {
   const [form] = Form.useForm();
 
   useEffect(() => {
@@ -97,7 +94,7 @@ const EditarClienteModal = ({ cliente, open, onCancel, onSave }) => {
   return (
     <Modal
       title="Editar Cliente"
-      open={open}
+      visible={visible}
       onCancel={onCancel}
       onOk={handleSave}
     >
@@ -132,6 +129,13 @@ const EditarClienteModal = ({ cliente, open, onCancel, onSave }) => {
           name="endereco"
           label="Endereço"
           rules={[{ required: true, message: 'Por favor, insira o endereço do cliente!' }]}
+        >
+          <Input />
+        </Form.Item>
+        <Form.Item
+          name="anotacoes_cliente"
+          label="Anotação dos Clientes"
+          rules={[{ required: true, message: 'Por favor, insira anotação do cliente!' }]}
         >
           <Input />
         </Form.Item>
@@ -187,6 +191,12 @@ const ListaClientes = ({ clientes, onEditarCliente, onExcluirCliente }) => {
       render: (text) => text || '---',
     },
     {
+      title: 'Anotações do cliente',
+      dataIndex: 'anotacoes_cliente',
+      key: 'anotacoes_cliente',
+      render: (text) => text || '---',
+    },
+    {
       title: 'Editar',
       key: 'editar',
       render: (text, record) => (
@@ -213,24 +223,32 @@ const Clientes = () => {
   const [email, setEmail] = useState('');
   const [telefone, setTelefone] = useState('');
   const [endereco, setEndereco] = useState('');
+  const [anotacoes_cliente, setAnotacoes] = useState('');
   const [pesquisaNome, setPesquisaNome] = useState('');
   const [clientesOriginal, setClientesOriginal] = useState([]);
   const [clienteEditando, setClienteEditando] = useState(null);
   const [editarModalVisivel, setEditarModalVisivel] = useState(false);
   const [clientesFiltrados, setClientesFiltrados] = useState([]);
+
+  useEffect(() => {
+    atualizaLista();
+  }, []);
+
+  // token de login
+
   const token = useSelector((state) => state.token)
-  
+
   const config = {
      headers: {
        'Authorization': 'Bearer ' + token
      }
    };  
- 
+
   useEffect(() => {    
     atualizaLista();
   }, []);
-
-  // redirecionamento se não estiver logado
+  
+  // redirecionamento
 
   const navigate = useNavigate();
 
@@ -244,10 +262,11 @@ const Clientes = () => {
   // Atualiza a tabela caso um comando seja executado
 
   function atualizaLista() {
-    axios.get(baseUrlClientes, config)
+    axios.get('https://ideacao-backend-8ea0b764c21a.herokuapp.com/api/aluguel-clientes', config)
       .then((response) => {
         if (response.status == 200) {
           const dados = response.data.data;
+          console.log(dados);
           let dadosProcessados = dados.map((cliente) => {
             return {
               key: cliente.id,
@@ -255,19 +274,17 @@ const Clientes = () => {
               email: cliente.attributes.email,
               telefone: cliente.attributes.telefone,
               endereco: cliente.attributes.endereco,
+              anotacoes_cliente: cliente.attributes.anotacoes_cliente,
             }
           });
           setClientes(dadosProcessados);
           setClientesOriginal(dadosProcessados);
           setClientesFiltrados(dadosProcessados);
-          console.log("Recebeu a lista de clientes!");
         } else {
-          console.log("TOKENNN: ", config);
           alert("Houve um erro na conexão com o servidor!")
         }
       })
       .catch((error) => {
-        console.log("TOKENNN: ", config);
         console.log(error)
         alert("Houve um erro na conexão com o servidor!")
       });
@@ -284,20 +301,21 @@ const Clientes = () => {
   // Função para adicionar clientes
 
   const adicionarCliente = (data) => {
-    if (data.nome && data.email && data.telefone && data.endereco) {
+    if (data.nome && data.telefone && data.endereco && data.anotacoes_cliente) {
       const novoCliente = {
         data: {
           nome: data.nome,
           email: data.email,
           telefone: data.telefone,
           endereco: data.endereco,
+          anotacoes_cliente: data.anotacoes_cliente,
         },
       };
 
-      axios.post(baseUrlClientes, novoCliente, config)
+      axios.post('https://ideacao-backend-8ea0b764c21a.herokuapp.com/api/aluguel-clientes', novoCliente, config)
         .then((response) => {
           if (response.status === 200) {
-            alert("Cliente adicionado com sucesso!");
+            alert("Cadastro de cliente feito com sucesso");
             atualizaLista();
           } else {
             console.error('Erro de servidor:', response);
@@ -308,6 +326,8 @@ const Clientes = () => {
         });
     }
   };
+
+
 
   // Função para editar os clientes
 
@@ -329,8 +349,11 @@ const Clientes = () => {
     if (clienteEditado.endereco) {
       camposEditados.endereco = clienteEditado.endereco;
     }
+    if (clienteEditado.anotacoes_cliente) {
+      camposEditados.anotacoes_cliente = clienteEditado.anotacoes_cliente;
+    }
 
-    axios.put(baseUrlClientes + `/${novosClientes[clienteEditando].key}`, { data: camposEditados }, config)
+    axios.put(`https://ideacao-backend-8ea0b764c21a.herokuapp.com/api/aluguel-clientes/${novosClientes[clienteEditando].key}`, { data: camposEditados }, config)
       .then((response) => {
         if (response.status === 200) {
           setClientes(novosClientes);
@@ -350,14 +373,14 @@ const Clientes = () => {
     console.log(clienteId);
 
     // Fazer uma chamada à API para verificar se existem clientes relacionados a vendas
-    axios.get(baseUrlClientes + `/${clienteId}/?populate=vendas`, config)
+    axios.get(`https://ideacao-backend-8ea0b764c21a.herokuapp.com/api/aluguel-clientes/${clienteId}/?populate=*`, config)
       .then((response) => {
         if (response.status === 200) {
           const clienteExcluidoNome = response.data.data.attributes.nome;
-          const vendasRelacionadas = response.data.data.attributes.vendas.data;
-          console.log('Cliente relacionados à vendas:', vendasRelacionadas);
+          const alugueisRelacionadas = response.data.data.attributes.alugueis.data;
+          console.log('Produtos relacionados à categoria:', alugueisRelacionadas);
 
-          if (vendasRelacionadas.length > 0) {
+          if (alugueisRelacionadas.length > 0) {
             //Se existe, erro
             alert('Não é possível excluir o cliente, pois existem vendas cadastradas relacionados ao cliente.');
           } else {
@@ -377,7 +400,7 @@ const Clientes = () => {
   const confirmarExclusaoCliente = (clienteId, clienteExcluidoNome) => {
     const confirmarExclusao = window.confirm(`Tem certeza de que deseja excluir o cliente: ${clienteExcluidoNome}?`);
     if (confirmarExclusao) {
-      axios.delete(baseUrlClientes + `/${clienteId}`, config)
+      axios.delete(`https://ideacao-backend-8ea0b764c21a.herokuapp.com/api/aluguel-clientes/${clienteId}`, config)
         .then((response) => {
           if (response.status === 200) {
             atualizaLista();
@@ -404,17 +427,18 @@ const Clientes = () => {
   return (
     <div>
       <Header />
-      <Bvoltar />
       <div className="container">
         <InputForm
           nome={nome}
           email={email}
           telefone={telefone}
           endereco={endereco}
+          anotacoes_cliente={anotacoes_cliente}
           onNomeChange={(e) => setNome(e.target.value)}
           onEmailChange={(e) => setEmail(e.target.value)}
           onTelefoneChange={(e) => setTelefone(e.target.value)}
           onEnderecoChange={(e) => setEndereco(e.target.value)}
+          onAnotacoesChange={(e) => setAnotacoes(e.target.value)}
           onAdicionar={adicionarCliente}
         />
         <BarraPesquisa
@@ -429,7 +453,7 @@ const Clientes = () => {
         />
         <EditarClienteModal
           cliente={clientes[clienteEditando]}
-          open={editarModalVisivel}
+          visible={editarModalVisivel}
           onCancel={() => setEditarModalVisivel(false)}
           onSave={(clienteEditado) => {
             editarCliente(clienteEditado, clienteEditando);

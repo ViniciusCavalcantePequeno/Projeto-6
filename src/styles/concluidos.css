@@ -1,5 +1,5 @@
 body {
-  background: #92AD94;
+  background: #87CEEB;
 }
 
 /* Torna visivel o botão de voltar do header */
@@ -14,9 +14,9 @@ body {
   position: fixed;
   top: 1%;
   left: 1%;
-  color: #0e440f;
+  color: #aaaa;
   font-size: 20px;
-  text-decoration: none;
+  text-decoration: none; /* Remover sublinhado do link */
 }
 
 
@@ -79,7 +79,7 @@ body {
 
 
 .input-container {
-  background-color: #989090;
+  background-color: #aaaa;
   padding: 20px;
   margin-bottom: 20px;
   font-weight: bold;
@@ -109,7 +109,7 @@ body {
 .buttonc {
   padding: 10px 20px;
   font-size: 16px;
-  background-color: green;
+  background-color: #bbaacc;
   color: #ffffff;
   border: none;
   cursor: pointer;
@@ -117,7 +117,7 @@ body {
 }
 
 .buttonc:active {
-  background-color: lightgreen;
+  background-color: #acffff;
   color: #000000;
 }
 
@@ -125,7 +125,7 @@ body {
 /* Barras  de Pesquuisa */
 
 .barra-pesquisa {
-  background-color: #599768;
+  background-color: #777777;
   padding: 10px;
   margin-bottom: 10px;
   display: flex;
@@ -154,7 +154,7 @@ body {
 
 table {
   border-collapse: collapse;
-  background-color: #599768;
+  background-color: #cabbffff;
   max-height: 400px;
   overflow-y: auto;
   width: 100%;
@@ -168,9 +168,9 @@ th, td {
 }
 
 th {
-  background-color: #599768;
+  background-color: #777768;
 }
 
 tbody tr:hover {
-  background-color: #92c49e;
+  background-color: #ffffff;
 }

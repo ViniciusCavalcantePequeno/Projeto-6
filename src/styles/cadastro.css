@@ -1,31 +1,9 @@
-body {
-  background: #92AD94;
-}
+
 
 /* Torna visivel o botão de voltar do header */
 
-.header-title {
-  font-size: 24px;
-}
-
-.menu-toggle {
-  cursor: pointer;
-}
-
-/* Estilos para o MenuLateral */
-.menu-lateral {
-  background-color: #222;
-  color: white; 
-  padding: 10px; 
-  top: 0;
-  left: 250px; 
-  width: 250px; 
-  height: 100%;
-  transition: left 0.3s;
-}
-
-.menu-lateral.aberto {
-  left: 100;
+.header-toggle {
+  display: block;
 }
 
 /* Boltão mobile de voltar a tela principal */
@@ -34,14 +12,14 @@ body {
   position: fixed;
   top: 1%;
   left: 1%;
-  color: #0e440f;
+  color: #fff;
   font-size: 20px;
   text-decoration: none;
 }
 
 /* Container */
 
-.container-vendas {
+.container-aluguel {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -55,13 +33,14 @@ body {
 @media screen and (max-width: 800px) {
   body {
     align-items: flex-start;
+    width: 1000px;
   }
 
   .header {
     display: none;
   }
   
-  .container-vendas {
+  .container-aluguel {
     margin-top: 100%;
     margin-left: 50%;
     margin-right: 10%;
@@ -70,14 +49,14 @@ body {
     max-width: 40vw;
   }
 
-  .input-container-vendas input {
+  .input-container-aluguel input {
     width: 80%;
   }
 }
 
 
-.input-container-vendas {
-  background-color: #599768;
+.input-container-aluguel {
+  background-color: #5998;
   padding: 20px;
   margin-bottom: 25px;
   font-weight: bold;
@@ -86,30 +65,30 @@ body {
   margin-top: -170px;
 }
 
-.input-container-vendas input {
+.input-container-aluguel input {
   width: 300px;
 }
 
-.input-row-vendas {
+.input-row-aluguel {
   display: flex;
   align-items: center;
   gap: 30px;
   margin-bottom: 15px;
 }
 
-.input-row-vendas label {
-  width: 200px;
+.input-row-aluguel label {
+  width: 100px;
   text-align: left;
 }
 
-.button-container-vendas {
+.button-container-aluguel {
   display: flex;
   justify-content: center;
   align-items: center;
   margin-top: -5px;
 }
 
-.button-vendas {
+.button-aluguel {
   padding: 14px 30px;
   font-size: 23px;
   font-weight: bold;
@@ -119,13 +98,9 @@ body {
   cursor: pointer;
 }
 
-.button-vendas:active {
-  background-color: #0a4c06;
+.button-aluguel:active {
+  background-color: #0aaa;
   color: #000000;
-}
-
-#relatorios-link {
-  color: yellow;
 }
 
 
@@ -136,6 +111,7 @@ body {
   overflow-y: auto;
 }
 
+
 .barra-rolagem {
   table-layout: fixed;
   width: calc(100% - 5px);
@@ -144,6 +120,7 @@ body {
 .barra-rolagem tbody {
   padding-right: 5px;
 }
+
 
 table {
   width: 100%;
@@ -157,16 +134,10 @@ th, td {
   border-bottom: 1px solid #000000;
 }
 
-th, td label {
-  color: #ffffff;
-}
-
-
 th {
-  background-color: #0a4c06;
+  background-color: #0ac6;
 }
-
 
 tbody tr:hover {
-  background-color: #92c49e;
+  background-color: #92c4ee;
 }
