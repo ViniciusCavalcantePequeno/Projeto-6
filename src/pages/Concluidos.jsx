@@ -431,7 +431,7 @@ const TableAluguel = ({ data, setData, atualizaLista, config }) => {
                 marginLeft: '87px',
               }}
               defaultValue={false}
-              onChange={(e) => (record.concluido = concluido ? true : false)}
+              onChange={(e) => (record.concluido = false)}
             />
           </div>
         </div>
