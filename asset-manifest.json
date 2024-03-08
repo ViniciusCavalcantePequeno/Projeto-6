@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/Vestidos_e_Ternos/static/css/main.cd2fab30.css",
-    "main.js": "/Vestidos_e_Ternos/static/js/main.d0f3fb51.js",
+    "main.js": "/Vestidos_e_Ternos/static/js/main.6d7f9a22.js",
     "static/js/787.106e225d.chunk.js": "/Vestidos_e_Ternos/static/js/787.106e225d.chunk.js",
     "static/media/iconelogin.png": "/Vestidos_e_Ternos/static/media/iconelogin.509da15bc18266d017eb.png",
     "index.html": "/Vestidos_e_Ternos/index.html",
     "main.cd2fab30.css.map": "/Vestidos_e_Ternos/static/css/main.cd2fab30.css.map",
-    "main.d0f3fb51.js.map": "/Vestidos_e_Ternos/static/js/main.d0f3fb51.js.map",
+    "main.6d7f9a22.js.map": "/Vestidos_e_Ternos/static/js/main.6d7f9a22.js.map",
     "787.106e225d.chunk.js.map": "/Vestidos_e_Ternos/static/js/787.106e225d.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.cd2fab30.css",
-    "static/js/main.d0f3fb51.js"
+    "static/js/main.6d7f9a22.js"
   ]
 }
