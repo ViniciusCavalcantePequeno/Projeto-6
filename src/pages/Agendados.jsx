@@ -198,6 +198,9 @@ const TableAluguel = ({ data, setData, atualizaLista, config }) => {
     if (aluguelEditada.quantidade_pecas) {
       camposEditados.quantidade_pecas = aluguelEditada.quantidade_pecas;
     }
+    if (aluguelEditada.anotacoes_aluguel) {
+      camposEditados.anotacoes_aluguel = aluguelEditada.anotacoes_aluguel;
+    }
     if (aluguelEditada.valor_adiantado) {
       camposEditados.valor_adiantado = aluguelEditada.valor_adiantado;
     }
@@ -275,6 +278,11 @@ const TableAluguel = ({ data, setData, atualizaLista, config }) => {
       title: 'Quantidade de Peças',
       dataIndex: 'quantidade_pecas',
       key: 'quantidade_pecas',
+    },
+    {
+      title: 'Tipos das Peças',
+      dataIndex: 'anotacoes_aluguel',
+      key: 'anotacoes_aluguel',
     },
     {
       title: 'Ações',
@@ -365,6 +373,19 @@ const TableAluguel = ({ data, setData, atualizaLista, config }) => {
             />
           </div>
           <div>
+            <label htmlFor="editTiposPecas">Tipos das Peças:</label>
+            <input
+              type="text"
+              step="0.01"
+              id="editTiposPecas"
+              style={{
+                marginLeft: '53px',
+              }}
+              defaultValue={record.anotacoes_aluguel}
+              onChange={(e) => (record.anotacoes_aluguel = e.target.value)}
+            />
+          </div>
+          <div>
             <label htmlFor="editValorFaltando">Valor Faltando (R$):</label>
             <input
               type="number"
@@ -451,6 +472,7 @@ const TableAluguel = ({ data, setData, atualizaLista, config }) => {
             <li><strong>Valor Adiantado:</strong> {record.valor_adiantado}</li>
             <li><strong>Valor Faltando:</strong> {record.valor_faltando}</li>
             <li><strong>Quantidade de Peças:</strong> {record.quantidade_pecas}</li>
+            <li><strong>Tipos das Peças:</strong> {record.anotacoes_aluguel}</li>
             <li><strong>Concluido:</strong> {record.concluido}</li>
             <li><strong>Data Efetiva:</strong> {record.data_efetiva_entrega}</li>
           </ul>
@@ -518,7 +540,7 @@ const Agendados = () => {
   // atualizar lista
 
   function atualizaLista() {
-    axios.get(`https://ideacao-backend-8ea0b764c21a.herokuapp.com/api/aluguel-alugueis?filters[concluido]=false&populate=*`, config)
+    axios.get(`https://ideacao-backend-8ea0b764c21a.herokuapp.com/api/aluguel-alugueis?sort=data_devolucao:asc&filters[concluido]=false&populate=*`, config)
 
       .then((response) => {
         if (response.status === 200) {
@@ -535,6 +557,7 @@ const Agendados = () => {
               concluido: Aluguel.attributes.concluido ? "Sim" : "Não",
               data_efetiva_entrega: Aluguel.attributes.data_efetiva_entrega,
               quantidade_pecas: Aluguel.attributes.quantidade_pecas,
+              anotacoes_aluguel: Aluguel.attributes.anotacoes_aluguel,
             }
           });
           console.log(dadosProcessados);
@@ -569,7 +592,7 @@ const Agendados = () => {
   };
 
   const pesquisaNome = (clienteId) => {
-    axios.get(`https://ideacao-backend-8ea0b764c21a.herokuapp.com/api/aluguel-alugueis?sort=data_devolucao:desc&filters[concluido]=false&filters[cliente][id][$eq]=${clienteId}&populate=*`, config)
+    axios.get(`https://ideacao-backend-8ea0b764c21a.herokuapp.com/api/aluguel-alugueis?sort=data_devolucao:asc&filters[concluido]=false&filters[cliente][id][$eq]=${clienteId}&populate=*`, config)
       .then((response) => {
         if (response.status === 200) {
           const dados = response.data.data;
@@ -584,6 +607,7 @@ const Agendados = () => {
               concluido: Aluguel.attributes.concluido ? "Sim" : "Não",
               data_efetiva_entrega: Aluguel.attributes.data_efetiva_entrega,
               quantidade_pecas: Aluguel.attributes.quantidade_pecas,
+              anotacoes_aluguel: Aluguel.attributes.anotacoes_aluguel,
             }
           });
           console.log("Pesquisa por nome: ", dadosProcessados);
@@ -614,6 +638,7 @@ const Agendados = () => {
               concluido: Aluguel.attributes.concluido ? "Sim" : "Não",
               data_efetiva_entrega: Aluguel.attributes.data_efetiva_entrega,
               quantidade_pecas: Aluguel.attributes.quantidade_pecas,
+              anotacoes_aluguel: Aluguel.attributes.anotacoes_aluguel,
             }
           });
           console.log("Pesquisa por Data: ", dadosProcessados);

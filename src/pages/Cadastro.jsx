@@ -66,6 +66,7 @@ const Cadastro = () => {
           valor_faltando: data.valor_faltando,
           data_aluguel: data.data_aluguel,
           data_devolucao: data.data_devolucao,
+          anotacoes_aluguel: data.anotacoes_aluguel,
           concluido: data.concluido,
           data_efetiva_entrega: data.data_efetiva_entrega,
         },
@@ -166,6 +167,21 @@ const Cadastro = () => {
               />
             </div>
             <div className="input-row-aluguel" id="valor-desconto-container">
+              <label htmlFor="anotacoes_aluguel">Quais os tipos de peças:</label>
+              <Controller
+                name="anotacoes_aluguel"
+                control={control}
+                render={({ field }) => (
+                  <input
+                    type="text"
+                    id="anotacoes_aluguel"
+                    placeholder="Digite os tipos das peças alugadas"
+                    {...field}
+                  />
+                )}
+              />
+            </div>
+            <div className="input-row-aluguel" id="valor-desconto-container">
               <label htmlFor="valor_adiantado">Valor Adiantado:</label>
               <Controller
                 name="valor_adiantado"
@@ -180,7 +196,6 @@ const Cadastro = () => {
                 )}
               />
             </div>
-
             <div className="input-row-aluguel" id="valor-desconto-container">
               <label htmlFor="valor_faltando">Valor Faltando:</label>
               <Controller
