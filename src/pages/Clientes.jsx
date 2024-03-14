@@ -109,10 +109,6 @@ const EditarClienteModal = ({ cliente, open, onCancel, onSave }) => {
         <Form.Item
           name="email"
           label="Email"
-          rules={[
-            { required: true, message: 'Por favor, insira o email do cliente!' },
-            { type: 'email', message: 'Por favor, insira um email válido!' },
-          ]}
         >
           <Input />
         </Form.Item>
@@ -128,14 +124,12 @@ const EditarClienteModal = ({ cliente, open, onCancel, onSave }) => {
         <Form.Item
           name="endereco"
           label="Endereço"
-          rules={[{ required: true, message: 'Por favor, insira o endereço do cliente!' }]}
         >
           <Input />
         </Form.Item>
         <Form.Item
           name="anotacoes_cliente"
           label="Anotação dos Clientes"
-          rules={[{ required: true, message: 'Por favor, insira anotação do cliente!' }]}
         >
           <Input />
         </Form.Item>
@@ -301,7 +295,7 @@ const Clientes = () => {
   // Função para adicionar clientes
 
   const adicionarCliente = (data) => {
-    if (data.nome && data.telefone && data.endereco && data.anotacoes_cliente) {
+    if (data.nome && data.telefone) {
       const novoCliente = {
         data: {
           nome: data.nome,
