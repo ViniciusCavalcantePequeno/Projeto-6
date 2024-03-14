@@ -77,14 +77,24 @@ const PesquisaBarra = ({ pesquisaNome, pesquisaData, atualizaLista, config }) =>
       </select>
 
       {tipoPesquisa === "nome" && (
-        <select id="clientes" style={{ marginRight: '10px' }} onChange={(e) => setClienteSelecionado(e.target.value)} value={clienteSelecionado}>
-          <option value="">Selecione um cliente</option>
+        <Select
+          id="clientes"
+          showSearch
+          style={{ marginRight: '10px' }}
+          optionFilterProp="children"
+          onChange={(value) => setClienteSelecionado(value)}
+          value={clienteSelecionado}
+          filterOption={(input, option) =>
+            option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+          }
+        >
+          <Select.Option value="">Selecione um cliente</Select.Option>
           {opcoesClientes.map((cliente) => (
-            <option key={cliente.value} value={cliente.value}>
+            <Select.Option key={cliente.value} value={cliente.value}>
               {cliente.label}
-            </option>
+            </Select.Option>
           ))}
-        </select>
+        </Select>
       )}
 
       {tipoPesquisa === "data" && (
@@ -128,7 +138,7 @@ const TableAluguel = ({ data, setData, atualizaLista, config }) => {
     atualizaLista();
 
     // Get clientes
-    axios.get('https://ideacao-backend-8ea0b764c21a.herokuapp.com/api/aluguel-clientes', config)
+    axios.get('https://ideacao-backend-8ea0b764c21a.herokuapp.com/api/aluguel-clientes?sort=nome:asc&populate=*', config)
       .then((response) => {
         if (response.status === 200) {
           const dadosClientes = response.data.data;

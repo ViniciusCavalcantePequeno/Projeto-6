@@ -77,14 +77,24 @@ const PesquisaBarra = ({ pesquisaNome, pesquisaData, atualizaLista, config }) =>
       </select>
 
       {tipoPesquisa === "nome" && (
-        <select id="clientes" style={{ marginRight: '10px' }} onChange={(e) => setClienteSelecionado(e.target.value)} value={clienteSelecionado}>
-          <option value="">Selecione um cliente</option>
+        <Select
+          id="clientes"
+          showSearch
+          style={{ marginRight: '10px' }}
+          optionFilterProp="children"
+          onChange={(value) => setClienteSelecionado(value)}
+          value={clienteSelecionado}
+          filterOption={(input, option) =>
+            option.children.toLowerCase().indexOf(input.toLowerCase()) >= 0
+          }
+        >
+          <Select.Option value="">Selecione um cliente</Select.Option>
           {opcoesClientes.map((cliente) => (
-            <option key={cliente.value} value={cliente.value}>
+            <Select.Option key={cliente.value} value={cliente.value}>
               {cliente.label}
-            </option>
+            </Select.Option>
           ))}
-        </select>
+        </Select>
       )}
 
       {tipoPesquisa === "data" && (
