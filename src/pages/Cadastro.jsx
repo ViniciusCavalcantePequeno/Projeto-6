@@ -90,7 +90,7 @@ const Cadastro = () => {
 
   useEffect(() => {
     // Get para opção de Clientes
-    axios.get('https://ideacao-backend-8ea0b764c21a.herokuapp.com/api/aluguel-clientes', config)
+    axios.get('https://ideacao-backend-8ea0b764c21a.herokuapp.com/api/aluguel-clientes?sort=nome:asc', config)
       .then((response) => {
         if (response.status === 200) {
           const dadosClientes = response.data.data;
