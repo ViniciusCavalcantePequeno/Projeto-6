@@ -1,6 +1,7 @@
 body {
   background: #d7cec7;
   overflow: auto;
+  height: 500px;
 }
 
 /* Torna visivel o botão de voltar do header */
@@ -83,7 +84,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: -200px;
+  margin-top: -600px;
   width: 300px;
 }
 

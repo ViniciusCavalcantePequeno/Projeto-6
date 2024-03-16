@@ -1,6 +1,7 @@
 body {
   background: #87CEEB;
   overflow-y: auto;
+  height: 1400px;
 }
 
 /* Torna visivel o botão de voltar do header */
@@ -164,6 +165,7 @@ tbody tr:hover {
   body {
     align-items: flex-start;
     width: 600px;
+    height: 1400px;
   }
 
   .barra-pesquisa-aluguel {
